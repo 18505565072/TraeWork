@@ -7,102 +7,116 @@
 <title>印即得彩卡报价工具V1</title>
 <style>
 :root{
-  --bg:#e9edf4; --surface:#ffffff; --ink:#17212f; --muted:#5f6b7c; --rule:#dfe6ee;
-  --teal:#0d9488; --teal-deep:#0f766e; --teal-soft:#ccfbf1; --teal-border:#b9ece5;
-  --indigo:#4f46e5; --indigo-deep:#4338ca; --indigo-soft:#eef2ff;
-  --amber:#d97706; --amber-soft:#fdf0dd;
-  --gold:#fcd34d; --navy:#0f172a; --red:#dc2626; --green:#15803d;
+  --surface:#ffffff; --ink:#1b2a24; --muted:#5e6b62; --rule:#d7e3db;
+  --green:#2d6a4f; --green-deep:#1b4332; --green-mid:#40916c; --green-light:#d8f3dc; --green-soft:#eaf5ee;
+  --gold:#e3b04b; --red:#c0392b; --ok:#1b6b3a;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#e9edf4,#e3e9f2);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;}
-.wrap{max-width:640px;margin:0 auto;padding:18px 14px 40px;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#f4f9f5;color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.4;}
+.wrap{max-width:640px;margin:0 auto;padding:12px 12px 24px;}
 
-header{background:linear-gradient(135deg,#0f766e 0%,#0d9488 45%,#4f46e5 100%);border-radius:20px;padding:30px 16px 26px;text-align:center;margin-bottom:14px;box-shadow:0 14px 32px -12px rgba(79,70,229,.5);}
-header h1{color:#fff;font-size:clamp(30px,7vw,40px);font-weight:900;letter-spacing:.06em;line-height:1.2;}
-header .ver{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;padding:4px 18px;letter-spacing:.25em;}
+header{background:linear-gradient(135deg,#2d6a4f 0%,#40916c 55%,#52b788 100%);border-radius:14px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 20px -14px rgba(45,106,79,.45);}
+header h1{color:#fff;font-size:clamp(21px,5vw,26px);font-weight:800;letter-spacing:.04em;line-height:1.1;}
+header .ver{font-size:11px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:2px 12px;letter-spacing:.22em;}
 
-.card{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:16px 14px;margin-bottom:12px;box-shadow:0 6px 18px -10px rgba(23,33,47,.12);}
-.bar{display:inline-flex;align-items:center;gap:8px;color:#fff;border-radius:10px;padding:7px 16px;font-size:16px;font-weight:800;letter-spacing:.08em;margin-bottom:13px;box-shadow:0 6px 14px -6px rgba(0,0,0,.28);}
-.bar-teal{background:linear-gradient(90deg,#0f766e,#14b8a6);}
-.bar-indigo{background:linear-gradient(90deg,#4338ca,#6366f1);}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:13px;padding:12px 12px;margin-bottom:9px;box-shadow:0 4px 14px -10px rgba(27,67,50,.10);}
+.bar{display:inline-flex;align-items:center;gap:8px;color:#fff;border-radius:8px;padding:4px 12px;font-size:14px;font-weight:800;letter-spacing:.06em;margin-bottom:9px;box-shadow:0 4px 10px -6px rgba(27,67,50,.28);}
+.bar-teal{background:linear-gradient(90deg,#2d6a4f,#40916c);}
+.bar-indigo{background:linear-gradient(90deg,#40916c,#52b788);}
 
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .full{grid-column:1/-1;}
-label{display:block;font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:700;}
-label .unit{font-weight:400;font-size:12.5px;}
-input,select{width:100%;height:50px;padding:0 12px;font-size:17px;color:var(--ink);background:#fff;border:1.5px solid var(--rule);border-radius:10px;outline:none;font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none;font-family:inherit;}
-select{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235f6b7c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;}
-input:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,.15);}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px;font-weight:700;}
+label .unit{font-weight:400;font-size:12px;}
+.dd{position:relative;}
+.dd-in{position:relative;}
+.dd-in input{padding-right:36px;}
+.dd-caret{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:var(--green-deep);padding:8px 10px;line-height:1;min-width:30px;}
+.dd-menu{position:absolute;left:0;right:0;top:calc(100% + 2px);background:#fff;border:1px solid #d0e4d4;border-radius:8px;box-shadow:0 6px 18px rgba(27,67,50,.16);z-index:30;display:none;overflow:hidden;}
+.dd-menu.open{display:block;}
+.dd-opt{display:block;width:100%;text-align:left;padding:8px 12px;font-size:13.5px;font-weight:600;color:var(--green-deep);background:none;border:none;cursor:pointer;font-family:inherit;}
+.dd-opt:hover{background:var(--green-soft);}
+.dd-opt.on{color:var(--green);font-weight:800;}
+input,select{width:100%;height:44px;padding:0 11px;font-size:16px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--rule);border-radius:9px;outline:none;font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none;font-family:inherit;}
+select{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235e6b62' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:32px;}
+input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.15);}
 
 .grid-row{display:grid;grid-template-columns:26px minmax(0,1.5fr) minmax(54px,.65fr) minmax(70px,.8fr) minmax(84px,.9fr) 30px;gap:7px;align-items:center;}
-.head-row{font-size:12.5px;font-weight:800;color:var(--muted);padding:0 2px 8px;letter-spacing:.02em;}
+.head-row{font-size:12px;font-weight:800;color:var(--muted);padding:0 2px 6px;letter-spacing:.02em;}
 .head-row .c{text-align:center;}
 .head-row .r{text-align:right;}
-.line{background:#fff;border:1.5px solid var(--rule);border-left:4px solid var(--amber);border-radius:11px;padding:6px;margin-bottom:7px;box-shadow:0 2px 8px -5px rgba(23,33,47,.1);}
-.no{width:24px;height:24px;border-radius:8px;background:var(--amber-soft);color:var(--amber);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;}
+.line{background:#fff;border:1.5px solid var(--rule);border-left:4px solid var(--green);border-radius:10px;padding:5px;margin-bottom:5px;box-shadow:0 2px 8px -5px rgba(27,67,50,.1);}
+.no{width:22px;height:22px;border-radius:7px;background:var(--green-light);color:var(--green-deep);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;}
 .size-in{display:flex;align-items:center;gap:4px;min-width:0;}
-.size-in input{flex:1;min-width:0;height:40px;text-align:center;padding:0 2px;font-size:15px;border-radius:9px;}
-.size-in .x{color:var(--indigo);font-weight:800;font-size:14px;flex:none;}
-.in-qty{height:40px;text-align:center;padding:0 2px;font-size:15px;border-radius:9px;}
+.size-in input{flex:1;min-width:0;height:38px;text-align:center;padding:0 2px;font-size:15px;border-radius:8px;}
+.size-in .x{color:var(--green);font-weight:800;font-size:14px;flex:none;}
+.in-qty{height:38px;text-align:center;padding:0 2px;font-size:15px;border-radius:8px;}
 .val{font-weight:800;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.val.unit{color:var(--teal-deep);font-size:15px;}
-.val.sub{color:var(--indigo-deep);font-size:16px;}
+.val.unit{color:var(--green-deep);font-size:14px;}
+.val.sub{color:var(--ink);font-size:15px;}
 .val.sub .cny{font-size:11px;font-weight:700;opacity:.75;margin-right:1px;}
-.val.dash{color:#b8c2cf;font-weight:600;}
-.del{width:30px;height:30px;border-radius:8px;border:1.5px solid #f3caca;background:#fef2f2;color:var(--red);font-size:13px;font-weight:800;cursor:pointer;justify-self:end;padding:0;line-height:1;}
-.add{width:100%;height:46px;border:1.5px dashed var(--indigo);background:var(--indigo-soft);color:var(--indigo-deep);border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;letter-spacing:.05em;font-family:inherit;}
+.val.dash{color:#b8c6bf;font-weight:600;}
+.del{width:28px;height:28px;border-radius:8px;border:1.5px solid #e6c9c5;background:#fbf2f2;color:var(--red);font-size:12px;font-weight:800;cursor:pointer;justify-self:end;padding:0;line-height:1;}
+.add{width:100%;height:42px;border:1.5px dashed var(--green);background:var(--green-soft);color:var(--green-deep);border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.05em;font-family:inherit;}
 .add:active{transform:scale(.98);}
-.hint{margin-top:9px;font-size:12px;color:var(--muted);line-height:1.7;}
-.formula{background:linear-gradient(135deg,#f0fdfa,#ecfdf5);border:1.5px solid var(--teal-border);border-left:5px solid var(--teal);border-radius:13px;padding:14px 16px;margin-bottom:12px;box-shadow:0 4px 14px -8px rgba(13,148,136,.3);}
-.formula .ft{font-size:14px;font-weight:800;color:var(--teal-deep);letter-spacing:.06em;margin-bottom:9px;display:flex;align-items:center;gap:7px;}
-.formula .ft::before{content:"";width:9px;height:9px;border-radius:2.5px;background:var(--teal);display:inline-block;}
-.formula .fl{font-size:13px;line-height:1.7;color:var(--ink);font-weight:500;}
-.formula .fl b{color:var(--teal-deep);font-weight:800;}
-.formula .fl + .fl{margin-top:4px;}
-.formula .fn{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.5;}
+.hint{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.5;}
+.formula{background:#eaf5ee;border:1.5px solid #bcd9c6;border-left:5px solid var(--green);border-radius:11px;padding:10px 13px;margin-bottom:9px;box-shadow:0 4px 12px -8px rgba(45,106,79,.2);}
+.formula .ft{font-size:13px;font-weight:800;color:var(--green-deep);letter-spacing:.06em;margin-bottom:6px;display:flex;align-items:center;gap:7px;}
+.formula .ft::before{content:"";width:8px;height:8px;border-radius:2.5px;background:var(--green);display:inline-block;}
+.formula .fl{font-size:12.5px;line-height:1.55;color:var(--ink);font-weight:500;}
+.formula .fl b{color:var(--green-deep);font-weight:800;}
+.formula .fl + .fl{margin-top:3px;}
+.formula .fn{margin-top:6px;font-size:11px;color:var(--muted);line-height:1.45;}
 
-.total-card{background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:16px;padding:18px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 12px 28px -12px rgba(15,23,42,.55);}
-.total-card .k{color:#93a4bb;font-size:17px;font-weight:800;letter-spacing:.05em;}
-.total-card .v{color:var(--gold);font-size:clamp(30px,8vw,42px);font-weight:900;font-variant-numeric:tabular-nums;}
-.total-card .v .cny{font-size:18px;font-weight:700;opacity:.8;margin-right:3px;}
-.total-card .v.zero{color:#5b6b80;}
+.total-card{background:#fff;border:1px solid var(--rule);border-radius:13px;padding:12px 15px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 14px -10px rgba(27,67,50,.10);}
+.total-card .k{color:#000;font-size:14px;font-weight:800;letter-spacing:.05em;}
+.total-card .v{color:#000;font-size:clamp(34px,8vw,46px);font-weight:900;font-variant-numeric:tabular-nums;}
+.total-card .v .cny{font-size:18px;font-weight:700;opacity:.85;margin-right:2px;}
+.total-card .v.zero{color:#000;opacity:.45;}
 
-.btn-copy{width:100%;height:54px;font-size:17.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#0f766e,#0d9488);border:none;border-radius:13px;cursor:pointer;letter-spacing:.08em;box-shadow:0 8px 18px -8px rgba(13,148,136,.6);font-family:inherit;}
+.btn-copy{width:100%;height:46px;font-size:16px;font-weight:800;color:#fff;background:linear-gradient(135deg,#2d6a4f 0%,#40916c 55%,#52b788 100%);border:none;border-radius:11px;cursor:pointer;letter-spacing:.06em;box-shadow:0 6px 14px -8px rgba(45,106,79,.55);font-family:inherit;}
 .btn-copy:active{transform:scale(.98);}
-.btn-copy.ok{background:var(--green)!important;}
+.btn-copy.ok{background:linear-gradient(90deg,var(--ok),#2d8a4f)!important;}
+.btn-copy.warn{color:#fcd34d;}
 
-footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;letter-spacing:.08em;font-weight:600;}
+footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;letter-spacing:.06em;font-weight:600;}
 
 @media (max-width:480px){
-  .wrap{padding:14px 10px 36px;}
-  .card{padding:14px 12px;margin-bottom:11px;}
-  .bar{padding:6px 14px;font-size:15px;margin-bottom:11px;}
-  .grid-row,.head-row{grid-template-columns:20px minmax(0,1fr) 46px 54px 64px 24px;gap:4px;}
-  .head-row{font-size:10.5px;padding:0 1px 7px;}
-  .no{width:20px;height:20px;border-radius:6px;font-size:11px;}
-  .line{padding:5px;margin-bottom:6px;border-radius:10px;}
-  .size-in input{height:38px;font-size:16px;border-radius:8px;}
+  .wrap{padding:11px 9px 20px;}
+  .card{padding:11px 10px;margin-bottom:8px;}
+  .bar{padding:3px 10px;font-size:13px;margin-bottom:8px;}
+  .dd-opt{padding:7px 10px;font-size:12.5px;}
+  input,select{height:42px;font-size:16px;}
+  .grid-row,.head-row{grid-template-columns:20px minmax(0,1fr) minmax(44px,auto) minmax(50px,auto) minmax(62px,auto) 24px;gap:4px;}
+  .head-row{font-size:10px;padding:0 1px 5px;}
+  .no{width:18px;height:18px;border-radius:6px;font-size:11px;}
+  .line{padding:4px;margin-bottom:5px;border-radius:9px;}
+  .size-in input{height:36px;font-size:16px;border-radius:8px;}
   .size-in .x{font-size:13px;}
-  .in-qty{height:38px;font-size:16px;border-radius:8px;}
-  .val.unit{font-size:13px;}
-  .val.sub{font-size:14px;}
+  .in-qty{height:36px;font-size:16px;border-radius:8px;}
+  .val.unit{font-size:12.5px;}
+  .val.sub{font-size:13.5px;}
   .val.sub .cny{font-size:10px;}
   .del{width:24px;height:24px;border-radius:7px;font-size:11px;border-width:1px;}
-  .add{height:44px;font-size:15.5px;}
-  .formula{padding:11px 13px;margin-bottom:10px;}
-  .formula .ft{font-size:13px;margin-bottom:7px;}
-  .formula .fl{font-size:12px;line-height:1.65;}
-  .btn-copy{height:50px;font-size:16.5px;}
+  .add{height:40px;font-size:14.5px;}
+  .formula{padding:9px 11px;margin-bottom:8px;}
+  .formula .ft{font-size:12px;margin-bottom:5px;}
+  .formula .fl{font-size:11.5px;line-height:1.5;}
+  .total-card{padding:10px 13px;margin-bottom:8px;}
+  .btn-copy{height:43px;font-size:15px;}
+  header{padding:8px 12px;margin-bottom:8px;}
+  header h1{font-size:clamp(19px,5vw,23px);}
 }
 @media (max-width:360px){
-  .wrap{padding:12px 8px 32px;}
-  .card{padding:12px 10px;}
-  .grid-row,.head-row{grid-template-columns:18px minmax(0,1fr) 42px 50px 60px 22px;gap:3px;}
-  .head-row{font-size:10px;}
-  .size-in input{font-size:14px;height:36px;}
-  .in-qty{font-size:14px;height:36px;}
-  .val.unit{font-size:12px;}
-  .val.sub{font-size:13px;}
+  .wrap{padding:10px 7px 18px;}
+  .card{padding:10px 9px;}
+  .grid-row,.head-row{grid-template-columns:18px minmax(0,1fr) minmax(40px,auto) minmax(46px,auto) minmax(58px,auto) 22px;gap:3px;}
+  .head-row{font-size:9.5px;}
+  .size-in input{font-size:14px;height:34px;}
+  .in-qty{font-size:14px;height:34px;}
+  .val.unit{font-size:11.5px;}
+  .val.sub{font-size:12.5px;}
+  header h1{font-size:18px;}
 }
 </style>
 </head>
@@ -116,25 +130,43 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
   <section class="card">
     <div class="bar bar-teal">基础参数</div>
     <div class="grid">
-      <div class="full">
-        <label for="paper">纸张克重 <span class="unit">(如 250G单卡)</span></label>
-        <input type="text" id="paper" value="250G单卡" inputmode="text" autocomplete="off" placeholder="250G单卡">
+      <div class="dd">
+        <label for="gsm">克重 <span class="unit">(G)</span></label>
+        <div class="dd-in">
+          <input type="text" id="gsm" value="250G" inputmode="numeric" autocomplete="off" placeholder="250G">
+          <button type="button" class="dd-caret" data-target="gsm" aria-label="选择预设">▾</button>
+        </div>
+        <div class="dd-menu" data-target="gsm">
+          <button type="button" class="dd-opt" data-val="250G">250G</button>
+          <button type="button" class="dd-opt" data-val="300G">300G</button>
+        </div>
+      </div>
+      <div class="dd">
+        <label for="paperType">纸张类型</label>
+        <div class="dd-in">
+          <input type="text" id="paperType" value="单卡纸" inputmode="text" autocomplete="off" placeholder="单卡纸">
+          <button type="button" class="dd-caret" data-target="paperType" aria-label="选择预设">▾</button>
+        </div>
+        <div class="dd-menu" data-target="paperType">
+          <button type="button" class="dd-opt" data-val="单卡纸">单卡纸</button>
+          <button type="button" class="dd-opt" data-val="铜版纸">铜版纸</button>
+        </div>
       </div>
       <div>
         <label for="tonPrice">吨价 <span class="unit">(元)</span></label>
-        <input type="number" id="tonPrice" value="4200" inputmode="decimal" step="any">
+        <input type="text" id="tonPrice" value="4200" inputmode="numeric" min="200" max="20000">
       </div>
       <div>
         <label for="machineFee">上机费 <span class="unit">(元)</span></label>
-        <input type="number" id="machineFee" value="140" inputmode="decimal" step="any">
+        <input type="text" id="machineFee" value="140" inputmode="numeric" min="0" max="500">
       </div>
       <div>
         <label for="output">出数 <span class="unit">(张)</span></label>
-        <input type="number" id="output" value="50" inputmode="numeric" step="any">
+        <input type="text" id="output" value="50" inputmode="numeric" min="0" max="500">
       </div>
       <div>
         <label for="film">覆膜 <span class="unit">(元/张)</span></label>
-        <input type="number" id="film" value="0.4" inputmode="decimal" step="any">
+        <input type="number" id="film" value="0.4" inputmode="decimal" step="any" min="0" max="10">
       </div>
     </div>
   </section>
@@ -174,7 +206,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var rowsBox = $("rows");
-  var BASE_IDS = ["paper", "tonPrice", "machineFee", "output", "film"];
+  var CLAMPS = { tonPrice: [200, 20000], machineFee: [0, 500], output: [0, 500], film: [0, 10] };
 
   function fmt3(n) { return n.toLocaleString("zh-CN", { minimumFractionDigits: 3, maximumFractionDigits: 3 }); }
   function fmt2(n) { return n.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -182,11 +214,14 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
   function trimN(n) { return String(parseFloat(n.toFixed(4))); }
 
   function baseVals() {
-    var raw = $("paper").value.trim();
-    var m = raw.match(/(\d+(?:\.\d+)?)/);
+    var gsmRaw = $("gsm").value.trim();
+    var m = gsmRaw.match(/(\d+(?:\.\d+)?)/);
+    var gsmNum = m ? eff(parseFloat(m[1])) : 0;
+    var typeRaw = $("paperType").value.trim();
+    var gsmStr = m ? (trimN(gsmNum) + "G") : "—";
     return {
-      paperName: raw || "—",
-      gsm: m ? eff(parseFloat(m[1])) : 0,
+      paperName: gsmStr + (typeRaw ? typeRaw : ""),
+      gsm: gsmNum,
       ton: eff(parseFloat($("tonPrice").value)),
       fee: eff(parseFloat($("machineFee").value)),
       out: eff(parseFloat($("output").value)),
@@ -206,20 +241,25 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
     line.innerHTML =
       '<div class="no"></div>'
       + '<div class="size-in">'
-      + '<input type="number" class="in-len" placeholder="长" inputmode="decimal" step="any">'
+      + '<input type="number" class="in-len" placeholder="长" inputmode="decimal" step="any" min="10" max="1300">'
       + '<span class="x">×</span>'
-      + '<input type="number" class="in-wid" placeholder="宽" inputmode="decimal" step="any">'
+      + '<input type="number" class="in-wid" placeholder="宽" inputmode="decimal" step="any" min="10" max="1300">'
       + '</div>'
-      + '<input type="number" class="in-qty" placeholder="0" inputmode="numeric" step="any">'
+      + '<input type="text" class="in-qty" placeholder="0" inputmode="numeric" min="1">'
       + '<div class="val unit dash">—</div>'
       + '<div class="val sub dash">—</div>'
       + '<button type="button" class="del" title="删除此行">✕</button>';
     rowsBox.appendChild(line);
     renumber();
-    ["in-len", "in-wid", "in-qty"].forEach(function (c) {
-      var el = line.querySelector("." + c);
-      el.addEventListener("input", calcAll);
-    });
+    var lenEl = line.querySelector(".in-len");
+    var widEl = line.querySelector(".in-wid");
+    var qtyEl = line.querySelector(".in-qty");
+    lenEl.addEventListener("input", calcAll);
+    widEl.addEventListener("input", calcAll);
+    qtyEl.addEventListener("input", function () { stripInt(this); calcAll(); });
+    lenEl.addEventListener("change", function () { clampNum(this, 10, 1300); calcAll(); });
+    widEl.addEventListener("change", function () { clampNum(this, 10, 1300); calcAll(); });
+    qtyEl.addEventListener("change", function () { clampNum(this, 1, 9999999); calcAll(); });
     line.querySelector(".del").addEventListener("click", function () {
       if (rowsBox.children.length <= 1) {
         line.querySelector(".in-len").value = "";
@@ -267,18 +307,20 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
     return { b: b, total: total, results: results };
   }
 
-  function feedback(btn, msg, ok) {
+  function feedback(btn, msg, kind) {
     var label = "复制报价明细";
     btn.textContent = msg;
-    if (ok) btn.classList.add("ok");
+    btn.classList.remove("ok", "warn");
+    if (kind === "ok") btn.classList.add("ok");
+    else if (kind === "warn") btn.classList.add("warn");
     setTimeout(function () {
       btn.textContent = label;
-      btn.classList.remove("ok");
+      btn.classList.remove("ok", "warn");
     }, 1400);
   }
 
   function copyText(text, btn) {
-    function done() { feedback(btn, "已复制", true); }
+    function done() { feedback(btn, "已复制", "ok"); }
     function fallback() {
       var ta = document.createElement("textarea");
       ta.value = text;
@@ -304,10 +346,12 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
 
   $("btnCopy").addEventListener("click", function () {
     var c = calcAll();
-    if (!c.results.length) { feedback($("btnCopy"), "请先填写明细"); return; }
+    if (!c.results.length) { feedback($("btnCopy"), "请先填写明细", "warn"); return; }
     var b = c.b;
+    var d = new Date();
+    function pad2(n){return String(n).padStart(2,"0");}
+    var dateStr = d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate()) + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes()) + ":" + pad2(d.getSeconds());
     var lines = [
-      "【印即得彩卡报价单】",
       "纸张：" + b.paperName + " ｜ 吨价 " + trimN(b.ton) + "元 ｜ 上机费 " + trimN(b.fee) + "元 ｜ 出数 " + trimN(b.out) + "张 ｜ 覆膜 " + trimN(b.film) + "元/张",
       "——————————"
     ];
@@ -318,16 +362,73 @@ footer{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;lette
     lines.push("——————————");
     lines.push("合计：" + fmt2(c.total) + " 元");
     lines.push("印即得彩卡报价工具V1 ｜ copyright©OldK");
+    lines.push("时间：" + dateStr);
     copyText(lines.join("\n"), $("btnCopy"));
   });
 
-  BASE_IDS.forEach(function (id) {
-    $(id).addEventListener("input", calcAll);
-    $(id).addEventListener("change", calcAll);
+  function clampNum(el, lo, hi) {
+    var n = parseFloat(el.value);
+    if (isNaN(n)) n = lo;
+    if (n < lo) n = lo;
+    if (n > hi) n = hi;
+    el.value = n;
+  }
+  function stripInt(el) { el.value = el.value.replace(/[^\d]/g, ""); }
+  var INTS = ["tonPrice", "machineFee", "output"];
+  INTS.forEach(function (id) {
+    $(id).addEventListener("input", function () { stripInt(this); calcAll(); });
+    $(id).addEventListener("change", function () { clampNum(this, CLAMPS[id][0], CLAMPS[id][1]); calcAll(); });
+  });
+  $("film").addEventListener("input", calcAll);
+  $("film").addEventListener("change", function () { clampNum(this, 0, 10); calcAll(); });
+  function syncOpts(target) {
+    var v = $(target).value.trim();
+    Array.prototype.forEach.call(document.querySelectorAll('.dd-menu[data-target="' + target + '"] .dd-opt'), function (o) {
+      o.classList.toggle("on", o.getAttribute("data-val") === v);
+    });
+  }
+  function closeMenus() {
+    Array.prototype.forEach.call(document.querySelectorAll(".dd-menu"), function (m) { m.classList.remove("open"); });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".dd-caret"), function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var target = btn.getAttribute("data-target");
+      var menu = document.querySelector('.dd-menu[data-target="' + target + '"]');
+      var wasOpen = menu.classList.contains("open");
+      closeMenus();
+      if (!wasOpen) menu.classList.add("open");
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".dd-opt"), function (opt) {
+    opt.addEventListener("click", function () {
+      var target = opt.parentNode.getAttribute("data-target");
+      $(target).value = opt.getAttribute("data-val");
+      syncOpts(target);
+      calcAll();
+      closeMenus();
+      $(target).focus();
+    });
+  });
+  document.addEventListener("click", closeMenus);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenus(); });
+  $("paperType").addEventListener("input", function () { calcAll(); syncOpts("paperType"); });
+  $("paperType").addEventListener("change", function () { if (!this.value.trim()) this.value = "单卡纸"; syncOpts("paperType"); calcAll(); });
+  $("gsm").addEventListener("input", function () { stripInt(this); calcAll(); syncOpts("gsm"); });
+  $("gsm").addEventListener("change", function () {
+    var m = this.value.match(/(\d+(?:\.\d+)?)/);
+    var n = m ? parseInt(m[1], 10) : 250;
+    if (n < 60) n = 60;
+    if (n > 600) n = 600;
+    this.value = trimN(n) + "G";
+    syncOpts("gsm");
+    calcAll();
   });
 
   makeRow();
   calcAll();
+  syncOpts("gsm");
+  syncOpts("paperType");
 })();
 </script>
 </body>
