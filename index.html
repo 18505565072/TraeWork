@@ -165,7 +165,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
         <input type="text" id="output" value="50" inputmode="numeric" min="0" max="500">
       </div>
       <div>
-        <label for="film">覆膜 <span class="unit">(元/张)</span></label>
+        <label for="film">覆膜 <span class="unit">(元/m²)</span></label>
         <input type="number" id="film" value="0.4" inputmode="decimal" step="any" min="0" max="10">
       </div>
     </div>
@@ -174,8 +174,9 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
   <div class="formula">
     <div class="ft">计算公式</div>
     <div class="fl"><b>单张纸价</b> = (长÷1000) × (宽÷1000) × (克重÷1000) × 吨价 ÷ 1000</div>
-    <div class="fl"><b>小计</b> = (单张纸价 + 覆膜) × (数量 + 出数) + 上机费 − 出数 × 覆膜</div>
-    <div class="fn">单位换算：尺寸 mm→m、克重 g/m²→kg/m²、重量 kg→吨</div>
+    <div class="fl"><b>单张覆膜费</b> = 覆膜单价 × (长÷1000) × (宽÷1000)</div>
+    <div class="fl"><b>小计</b> = (单张纸价 + 单张覆膜费) × (数量 + 出数) + 上机费 − 出数 × 单张覆膜费</div>
+    <div class="fn">单位换算：尺寸 mm→m、克重 g/m²→kg/m²、重量 kg→吨、覆膜 元/m²</div>
   </div>
 
   <section class="card">
@@ -287,7 +288,8 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
       return null;
     }
     var unit = (len / 1000) * (wid / 1000) * (b.gsm / 1000) * b.ton / 1000;
-    var sub = (unit + b.film) * (qty + b.out) + b.fee - b.out * b.film;
+    var filmPer = b.film * (len / 1000) * (wid / 1000);
+    var sub = (unit + filmPer) * (qty + b.out) + b.fee - b.out * filmPer;
     uEl.textContent = fmt3(unit); uEl.classList.remove("dash");
     sEl.innerHTML = '<span class="cny">¥</span>' + fmt2(sub); sEl.classList.remove("dash");
     return { len: len, wid: wid, qty: qty, unit: unit, sub: sub };
@@ -352,7 +354,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
     function pad2(n){return String(n).padStart(2,"0");}
     var dateStr = d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate()) + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes()) + ":" + pad2(d.getSeconds());
     var lines = [
-      "纸张：" + b.paperName + " ｜ 吨价 " + trimN(b.ton) + "元 ｜ 上机费 " + trimN(b.fee) + "元 ｜ 出数 " + trimN(b.out) + "张 ｜ 覆膜 " + trimN(b.film) + "元/张",
+      "纸张：" + b.paperName + " ｜ 吨价 " + trimN(b.ton) + "元 ｜ 上机费 " + trimN(b.fee) + "元 ｜ 出数 " + trimN(b.out) + "张 ｜ 覆膜 " + trimN(b.film) + "元/m²",
       "——————————"
     ];
     c.results.forEach(function (r, i) {
