@@ -41,7 +41,7 @@ input,select{width:100%;height:44px;padding:0 11px;font-size:16px;font-weight:60
 select{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235e6b62' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:32px;}
 input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.15);}
 
-.grid-row{display:grid;grid-template-columns:26px minmax(0,1.5fr) minmax(54px,.65fr) minmax(70px,.8fr) minmax(84px,.9fr) 30px;gap:7px;align-items:center;}
+.grid-row{display:grid;grid-template-columns:26px minmax(0,1.3fr) minmax(48px,.5fr) minmax(62px,.65fr) minmax(56px,.55fr) minmax(74px,.7fr) 28px;gap:6px;align-items:center;}
 .head-row{font-size:12px;font-weight:800;color:var(--muted);padding:0 2px 6px;letter-spacing:.02em;}
 .head-row .c{text-align:center;}
 .head-row .r{text-align:right;}
@@ -53,6 +53,7 @@ input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,
 .in-qty{height:38px;text-align:center;padding:0 2px;font-size:15px;border-radius:8px;}
 .val{font-weight:800;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .val.unit{color:var(--green-deep);font-size:14px;}
+.val.film{color:var(--green-mid);font-size:13px;}
 .val.sub{color:var(--ink);font-size:15px;}
 .val.sub .cny{font-size:11px;font-weight:700;opacity:.75;margin-right:1px;}
 .val.dash{color:#b8c6bf;font-weight:600;}
@@ -87,7 +88,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
   .bar{padding:3px 10px;font-size:13px;margin-bottom:8px;}
   .dd-opt{padding:7px 10px;font-size:12.5px;}
   input,select{height:42px;font-size:16px;}
-  .grid-row,.head-row{grid-template-columns:20px minmax(80px,1.6fr) minmax(36px,.55fr) minmax(40px,.7fr) minmax(50px,.85fr) 24px;gap:4px;}
+  .grid-row,.head-row{grid-template-columns:20px minmax(70px,1.3fr) minmax(32px,.45fr) minmax(36px,.55fr) minmax(34px,.5fr) minmax(44px,.6fr) 22px;gap:3px;}
   .head-row{font-size:10px;padding:0 1px 5px;}
   .no{width:18px;height:18px;border-radius:6px;font-size:11px;}
   .line{padding:4px;margin-bottom:5px;border-radius:9px;}
@@ -95,6 +96,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
   .size-in .x{font-size:13px;}
   .in-qty{height:36px;font-size:16px;border-radius:8px;}
   .val.unit{font-size:12.5px;}
+  .val.film{font-size:11.5px;}
   .val.sub{font-size:13.5px;}
   .val.sub .cny{font-size:10px;}
   .del{width:24px;height:24px;border-radius:7px;font-size:11px;border-width:1px;}
@@ -110,11 +112,12 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
 @media (max-width:360px){
   .wrap{padding:10px 7px 18px;}
   .card{padding:10px 9px;}
-  .grid-row,.head-row{grid-template-columns:18px minmax(70px,1.6fr) minmax(30px,.5fr) minmax(36px,.65fr) minmax(44px,.8fr) 22px;gap:3px;}
+  .grid-row,.head-row{grid-template-columns:18px minmax(58px,1.3fr) minmax(28px,.4fr) minmax(32px,.5fr) minmax(30px,.45fr) minmax(40px,.55fr) 20px;gap:2px;}
   .head-row{font-size:9.5px;}
   .size-in input{font-size:14px;height:34px;}
   .in-qty{font-size:14px;height:34px;}
   .val.unit{font-size:11.5px;}
+  .val.film{font-size:10.5px;}
   .val.sub{font-size:12.5px;}
   header h1{font-size:18px;}
 }
@@ -186,6 +189,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
       <div>尺寸 (mm)</div>
       <div class="c">数量</div>
       <div class="r">单张纸价</div>
+      <div class="r">单张覆膜</div>
       <div class="r">小计</div>
       <div></div>
     </div>
@@ -248,6 +252,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
       + '</div>'
       + '<input type="text" class="in-qty" placeholder="0" inputmode="numeric" min="1">'
       + '<div class="val unit dash">—</div>'
+      + '<div class="val film dash">—</div>'
       + '<div class="val sub dash">—</div>'
       + '<button type="button" class="del" title="删除此行">✕</button>';
     rowsBox.appendChild(line);
@@ -280,10 +285,12 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
     var wid = parseFloat(line.querySelector(".in-wid").value);
     var qty = parseFloat(line.querySelector(".in-qty").value);
     var uEl = line.querySelector(".val.unit");
+    var fEl = line.querySelector(".val.film");
     var sEl = line.querySelector(".val.sub");
     var ok = len > 0 && wid > 0 && qty > 0;
     if (!ok) {
       uEl.textContent = "—"; uEl.classList.add("dash");
+      fEl.textContent = "—"; fEl.classList.add("dash");
       sEl.textContent = "—"; sEl.classList.add("dash");
       return null;
     }
@@ -291,8 +298,9 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
     var filmPer = b.film * (len / 1000) * (wid / 1000);
     var sub = (unit + filmPer) * (qty + b.out) + b.fee - b.out * filmPer;
     uEl.textContent = fmt3(unit); uEl.classList.remove("dash");
+    fEl.textContent = fmt3(filmPer); fEl.classList.remove("dash");
     sEl.innerHTML = '<span class="cny">¥</span>' + fmt2(sub); sEl.classList.remove("dash");
-    return { len: len, wid: wid, qty: qty, unit: unit, sub: sub };
+    return { len: len, wid: wid, qty: qty, unit: unit, filmPer: filmPer, sub: sub };
   }
 
   function calcAll() {
@@ -359,7 +367,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
     ];
     c.results.forEach(function (r, i) {
       lines.push((i + 1) + ". " + trimN(r.len) + "×" + trimN(r.wid) + "mm ｜ 数量 " + trimN(r.qty)
-        + " ｜ 单张纸价 " + fmt3(r.unit) + "元 ｜ 小计 " + fmt2(r.sub) + "元");
+        + " ｜ 单张纸价 " + fmt3(r.unit) + "元 ｜ 单张覆膜 " + fmt3(r.filmPer) + "元 ｜ 小计 " + fmt2(r.sub) + "元");
     });
     lines.push("——————————");
     lines.push("合计：" + fmt2(c.total) + " 元");
