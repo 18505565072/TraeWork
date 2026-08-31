@@ -357,7 +357,8 @@ footer{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;lette
 
   $("btnCopy").addEventListener("click", function () {
     var c = calcAll();
-    if (!c.results.length) { feedback($("btnCopy"), "请先填写明细", "warn"); return; }
+    var totalRows = rowsBox.children.length;
+    if (!c.results.length || totalRows > c.results.length) { feedback($("btnCopy"), "请先填写明细", "warn"); return; }
     var b = c.b;
     var d = new Date();
     function pad2(n){return String(n).padStart(2,"0");}
